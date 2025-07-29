@@ -1,1 +1,418 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couple's Fitness & Nutrition Plan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .day {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .day-header {
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+        
+        .meal, .workout {
+            margin-bottom: 12px;
+        }
+        
+        .meal-type {
+            font-weight: 600;
+            color: #e74c3c;
+        }
+        
+        .workout-type {
+            font-weight: 600;
+            color: #27ae60;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 60%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .meal-details {
+            margin-top: 20px;
+        }
+        
+        .recipe-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .badminton-day {
+            background-color: #fffde7;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Couple's Fitness & Nutrition Plan</h1>
+    
+    <div class="container">
+        <!-- Monday -->
+        <div class="day">
+            <div class="day-header">Monday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>You: Sausage & egg pancake</div>
+                <div>Partner: Congee with egg & pork floss</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Meal prep - Teriyaki chicken with rice & broccoli</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner:</div>
+                <div onclick="showMealDetails('Stir-fried beef with peppers, served with rice')">Stir-fried beef with peppers, served with rice</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">AM Workout (Partner):</div>
+                <div>Full Body Circuit (see details)</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">PM Workout (You):</div>
+                <div>Push Day (Chest/Triceps/Shoulders)</div>
+            </div>
+        </div>
+        
+        <!-- Tuesday -->
+        <div class="day">
+            <div class="day-header">Tuesday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>You: Greek yogurt with nuts & honey</div>
+                <div>Partner: Scrambled eggs with toast</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Leftover beef stir-fry</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner:</div>
+                <div onclick="showMealDetails('Baked salmon with roasted sweet potatoes and green beans')">Baked salmon with roasted sweet potatoes and green beans</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">PM Workout (You):</div>
+                <div>Pull Day (Back/Biceps)</div>
+            </div>
+        </div>
+        
+        <!-- Wednesday -->
+        <div class="day badminton-day">
+            <div class="day-header">Wednesday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>You: Banana protein shake</div>
+                <div>Partner: Steamed buns with egg</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Tuna salad wraps</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner (Quick):</div>
+                <div onclick="showMealDetails('Quick shrimp fried rice with veggies')">Quick shrimp fried rice with veggies</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">AM Workout (Partner):</div>
+                <div>Pilates-inspired routine</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">Evening:</div>
+                <div>Badminton 7-11pm</div>
+            </div>
+        </div>
+        
+        <!-- Thursday -->
+        <div class="day">
+            <div class="day-header">Thursday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>You: Sausages & fried eggs</div>
+                <div>Partner: Rice porridge with pickles</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Leftover shrimp fried rice</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner:</div>
+                <div onclick="showMealDetails('Chicken curry with jasmine rice')">Chicken curry with jasmine rice</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">PM Workout (You):</div>
+                <div>Leg Day (Quads/Hamstrings/Calves)</div>
+            </div>
+        </div>
+        
+        <!-- Friday -->
+        <div class="day">
+            <div class="day-header">Friday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>You: Omelette with cheese & ham</div>
+                <div>Partner: Scallion pancakes with egg</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Chicken salad with quinoa</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner:</div>
+                <div onclick="showMealDetails('Homemade burgers with sweet potato fries')">Homemade burgers with sweet potato fries</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">AM Workout (Partner):</div>
+                <div>Full Body Strength</div>
+            </div>
+        </div>
+        
+        <!-- Saturday -->
+        <div class="day">
+            <div class="day-header">Saturday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>Both: Pancakes with berries & protein</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Out or leftovers</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner:</div>
+                <div onclick="showMealDetails('Steak with mashed potatoes and asparagus')">Steak with mashed potatoes and asparagus</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">Workout (You):</div>
+                <div>Push Day #2</div>
+            </div>
+        </div>
+        
+        <!-- Sunday -->
+        <div class="day">
+            <div class="day-header">Sunday</div>
+            <div class="meal">
+                <div class="meal-type">Breakfast:</div>
+                <div>Both: Full English (light version)</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Lunch:</div>
+                <div>Both: Meal prep for week</div>
+            </div>
+            <div class="meal">
+                <div class="meal-type">Dinner:</div>
+                <div onclick="showMealDetails('Roast chicken with mixed vegetables')">Roast chicken with mixed vegetables</div>
+            </div>
+            <div class="workout">
+                <div class="workout-type">Workout (You):</div>
+                <div>Pull Day #2</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Meal Details Modal -->
+    <div id="mealModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-meal-title">Meal Details</h2>
+            <div class="meal-details" id="meal-details-content">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+            <button class="recipe-btn" onclick="showRecipe()">Show Recipe</button>
+        </div>
+    </div>
+    
+    <script>
+        // Get the modal
+        var modal = document.getElementById("mealModal");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks on a meal, open the modal
+        function showMealDetails(mealName) {
+            document.getElementById("modal-meal-title").textContent = mealName;
+            
+            // Basic meal info (would be expanded with actual details)
+            document.getElementById("meal-details-content").innerHTML = `
+                <p><strong>Nutrition Info (per serving):</strong></p>
+                <ul>
+                    <li>Calories: ~500-600</li>
+                    <li>Protein: 30-40g</li>
+                    <li>Carbs: 40-50g</li>
+                    <li>Fats: 20-25g</li>
+                </ul>
+                <p><strong>Key Ingredients:</strong></p>
+                <ul id="ingredients-list">
+                    <!-- Ingredients will be added by showRecipe() -->
+                </ul>
+                <div id="recipe-steps" style="display:none;">
+                    <!-- Recipe steps will be added here -->
+                </div>
+            `;
+            
+            modal.style.display = "block";
+        }
+        
+        function showRecipe() {
+            const mealName = document.getElementById("modal-meal-title").textContent;
+            const ingredientsList = document.getElementById("ingredients-list");
+            const recipeSteps = document.getElementById("recipe-steps");
+            
+            // Sample recipes - in a real app these would be more comprehensive
+            const recipes = {
+                "Stir-fried beef with peppers, served with rice": {
+                    ingredients: [
+                        "300g beef strips",
+                        "1 bell pepper (any color)",
+                        "1 onion",
+                        "2 cloves garlic",
+                        "2 tbsp soy sauce",
+                        "1 tbsp oyster sauce",
+                        "1 tsp sugar",
+                        "1 tbsp cornstarch",
+                        "Cooked rice"
+                    ],
+                    steps: [
+                        "Marinate beef with 1 tbsp soy sauce and cornstarch for 15 mins",
+                        "Stir-fry beef until browned, remove from pan",
+                        "Cook garlic and onions until fragrant",
+                        "Add peppers and cook for 2 mins",
+                        "Return beef to pan, add remaining sauces and sugar",
+                        "Stir-fry for another 2 mins, serve with rice"
+                    ]
+                },
+                "Baked salmon with roasted sweet potatoes and green beans": {
+                    ingredients: [
+                        "2 salmon fillets",
+                        "1 large sweet potato",
+                        "200g green beans",
+                        "2 tbsp olive oil",
+                        "Lemon wedges",
+                        "Salt and pepper"
+                    ],
+                    steps: [
+                        "Preheat oven to 200°C (400°F)",
+                        "Cut sweet potato into cubes, toss with 1 tbsp oil, salt, and pepper",
+                        "Roast sweet potatoes for 20 mins",
+                        "Add green beans to tray, season salmon with remaining oil and seasonings",
+                        "Place salmon on tray, roast for 12-15 mins until cooked",
+                        "Serve with lemon wedges"
+                    ]
+                },
+                "Quick shrimp fried rice with veggies": {
+                    ingredients: [
+                        "200g shrimp",
+                        "2 cups cooked rice (preferably day-old)",
+                        "1 cup mixed vegetables (peas, carrots, corn)",
+                        "2 eggs",
+                        "2 tbsp soy sauce",
+                        "1 tsp sesame oil",
+                        "2 spring onions"
+                    ],
+                    steps: [
+                        "Scramble eggs in a pan, remove and set aside",
+                        "Cook shrimp until pink, remove and set aside",
+                        "Stir-fry vegetables for 2 mins",
+                        "Add rice and break up any clumps",
+                        "Add soy sauce and sesame oil, mix well",
+                        "Return eggs and shrimp to pan, mix",
+                        "Garnish with chopped spring onions"
+                    ]
+                }
+            };
+            
+            if (recipes[mealName]) {
+                ingredientsList.innerHTML = recipes[mealName].ingredients.map(i => `<li>${i}</li>`).join('');
+                
+                recipeSteps.innerHTML = `
+                    <p><strong>Instructions:</strong></p>
+                    <ol>
+                        ${recipes[mealName].steps.map(s => `<li>${s}</li>`).join('')}
+                    </ol>
+                `;
+                recipeSteps.style.display = "block";
+            } else {
+                ingredientsList.innerHTML = "<li>Recipe details coming soon!</li>";
+                recipeSteps.style.display = "none";
+            }
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
